@@ -1,38 +1,45 @@
 import React, { Component } from "react";
 import CampsiteInfo from "./CampsiteInfoComponent";
-import { View } from "react-native";
 import Directory from "./DirectoryComponent";
+import Constants from 'expo-constants';
+import { View, Platform } from 'react-native';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
 import { CAMPSITES } from "../shared/campsites";
 
-export default class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      campsites: CAMPSITES,
-      selectCampsite: 0,
-    };
-  }
-  onCampsiteSelect(campsiteId) {
-    this.setState({ selectCampsite: campsiteId });
-  }
-  render() {
-   
+const DirectoryNavigator = createStackNavigator(
+    {
+        Directory: { screen: Directory },
+        CampsiteInfo: { screen: CampsiteInfo }
+    }, 
+    {
+        initialRouteName: 'Directory',
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#5637DD'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+);
 
-    return (
-      <View style={{ flex: 1 }}>
-        <Directory
-          onPress={(campsiteId) => this.onCampsiteSelect(campsiteId)}
-          campsites={this.state.campsites}
-        />
-        <CampsiteInfo
-          campsite={
-            this.state.campsites.filter((campsite) => {
-              console.log("select campsite" , this.state.selectCampsite);
-              return campsite.id === this.state.selectCampsite;
-            })[0]
-          }
-        />
-      </View>
-    );
-  }
+const AppNavigator = createAppContainer(DirectoryNavigator);
+
+class Main extends Component {
+    render() {
+        return (
+            <View
+                style={{
+                    flex: 1,
+                    paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight
+            }}>
+                <AppNavigator />
+            </View>
+        );
+    }
 }
+
+export default Main;
