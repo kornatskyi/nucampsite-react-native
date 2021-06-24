@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
   },
   stackIcon: {
     marginLeft: 10,
-    color: "#fff",
+    color: "#fff", 
     fontSize: 24,
   },
 });
