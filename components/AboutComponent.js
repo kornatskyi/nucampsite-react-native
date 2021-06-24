@@ -33,7 +33,6 @@ export default class About extends Component {
             renderItem={renderPartner}
             keyExtractor={(item) => item.id.toString()}
           >
-            {console.log(this.state.partners)}
           </FlatList>
         </Card>
       </ScrollView>
