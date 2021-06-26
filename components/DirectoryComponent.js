@@ -15,8 +15,6 @@ const mapStateToProps = state => {
 
 class Directory extends Component {
 
-
-
     static navigationOptions = {
         title: 'Directory'
     }
@@ -24,6 +22,7 @@ class Directory extends Component {
     render() {
         const { navigate } = this.props.navigation;
         const renderDirectoryItem = ({ item }) => {
+            {console.log(item)}
             return (
                 <Tile
                     title={item.name}

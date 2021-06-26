@@ -19,6 +19,7 @@ class About extends Component {
   };
   render() {
     const renderPartner = ({ item }) => {
+      {console.log(item)}
       return (
         <ListItem
           title={item.name}
@@ -54,6 +55,7 @@ class About extends Component {
       <ScrollView>
         <Mission />
         <Card title="Community Partners">
+         
           <FlatList
             data={this.props.partners.partners}
             renderItem={renderPartner}
