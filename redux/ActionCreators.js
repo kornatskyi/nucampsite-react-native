@@ -177,6 +177,11 @@ export const postComment = (campsiteId, rating, author, text) => dispatch => {
 }
 
 
+export const deleteFavorite = campsiteId => ({
+    type: ActionTypes.DELETE_FAVORITE,
+    payload: campsiteId
+}); 
+
 
 
 
