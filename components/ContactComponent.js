@@ -9,7 +9,13 @@ export default class Contact extends Component {
     title: "Contact Us",
   };
 
-
+  sendMail() {
+    MailComposer.composeAsync({
+      recipients: ['campsites@nucamp.co'],
+      subject: 'Inquiry',
+      body: 'To whom it may concern:'
+    })
+  }
 
 
   render() {
